@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  omop-postgres:
+    image: postgres:13
+    container_name: omop-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: omop_cdm
+    volumes:
+      - ./postgresql:/docker-entrypoint-initdb.d
+      - omop-postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  omop-postgres-data:
+    name: omop-postgres-data
+
